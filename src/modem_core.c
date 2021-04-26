@@ -447,7 +447,6 @@ int mdm_parse_cmd(modem_config *cfg)
             mdm_send_response(23, cfg);
             break;
           case 2:
-            mdm_send_response(0, cfg);
             break;
           case 3:
             mdm_send_response(24, cfg);
