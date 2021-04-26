@@ -5,7 +5,6 @@ I just wanted to add ATI command because it looks cool on windows.
 I follow the AT Commands Reference Guide pdf  
 
 ATI[N]  
-    0 - numerical identifier.  
     1 - module checksum  
     2 - checksum check result  
     3 - manufacturer  
@@ -15,7 +14,6 @@ ATI[N]
 you can set it to what ever you want by changing those line :
 
 ```
-mdm_responses[MDM_RESP_ATI_NUMERICAL_IDENTIFIER] = ""; // Must be 3 digit 
 mdm_responses[MDM_RESP_ATI_CHECKSUM] = "";
 mdm_responses[MDM_RESP_ATI_MANUFACTURER] = "";
 mdm_responses[MDM_RESP_ATI_PRODUCT_NAME] = "";
