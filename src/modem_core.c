@@ -34,6 +34,12 @@ int mdm_init()
   mdm_responses[MDM_RESP_CONNECT_230400] = "CONNECT 230400";
   mdm_responses[MDM_RESP_CONNECT_460800] = "CONNECT 460800";
   mdm_responses[MDM_RESP_CONNECT_921600] = "CONNECT 921600";
+  // ATI emulation 
+  mdm_responses[MDM_RESP_ATI_NUMERICAL_IDENTIFIER] = "123"; // Must be 3 digit 
+  mdm_responses[MDM_RESP_ATI_CHECKSUM] = "";
+  mdm_responses[MDM_RESP_ATI_MANUFACTURER] = "Yutetsudo#0257";
+  mdm_responses[MDM_RESP_ATI_PRODUCT_NAME] = "YuMODEM V92 EXT";
+  mdm_responses[MDM_RESP_ATI_DOB_VERSION] = "Y1";
   return 0;
 }
 
@@ -434,6 +440,27 @@ int mdm_parse_cmd(modem_config *cfg)
         cmd = AT_CMD_ERR;
       break;
     case 'I':  // Information.
+      if (num > 7)
+        cmd = AT_CMD_ERR;
+      else {
+        switch (num){
+          case 0:
+            mdm_send_response(23, cfg);
+            break;
+          case 1:
+            mdm_send_response(24, cfg);
+            break;
+          case 3:
+            mdm_send_response(25, cfg);
+          break;
+          case 4:
+            mdm_send_response(26, cfg);
+          break;
+          case 5:
+            mdm_send_response(27, cfg);
+          break;
+        }
+      }
       break;
     case 'L':  // Speaker volume
       if (num < 1 || num > 3)
